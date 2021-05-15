@@ -1,0 +1,7 @@
+This query acts on two tables.  The left table is DRIVE attendees and it contains a record for all staff members that attended DRIVE, only those with completed or pending required evaluation status.
+The right table is Leadership Development enrollments and it contains all records of people who show up on a Leadership Development roster, regards of status.  This means that the right table contains records of completes, withdraws, deletes, etc.  Any possible status from the LMS system.
+
+
+SELECT D.[Person Number], D.[Learner Name], D.[Job Title], D.Department, D.[Business Unit], D.[DRIVE Date], L.[Offering Start Date] AS [Class Date], L.[Course Name], L.[Offering Assignment Status]
+FROM DRIVE AS D LEFT JOIN [Leadership All] AS L ON D.[Person Number] = L.[Person Number]
+WHERE L.[Offering Assignment Status] IS NOT NULL;
